@@ -8,7 +8,7 @@ export const getItemsWorkshop = async({ page }: props) => {
     const createURL = ( page: number ) => `https://steamcommunity.com/workshop/browse/?appid=294100&searchtext=&childpublishedfileid=0&browsesort=totaluniquesubscribers&section=readytouseitems&requiredtags%5B0%5D=Mod&requiredtags%5B1%5D=1.5&created_date_range_filter_start=0&created_date_range_filter_end=0&updated_date_range_filter_start=0&updated_date_range_filter_end=0&actualsort=totaluniquesubscribers&p=${page}`
 
     const allItemsWorkshop = [];
-    let currentPage = 240;
+    let currentPage = 0;
     let currentItemsWorkshop;
 
     do {
