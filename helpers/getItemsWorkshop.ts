@@ -56,5 +56,5 @@ export const getItemsWorkshop = async({ page }: props) => {
     } while ( currentItemsWorkshop.length !== 0 || false )
 
     // return items and add popularityTop
-    return allItemsWorkshop.map(( item, index ) => ({...item, popularityTop: index}) )
+    return allItemsWorkshop.map(( item, index ) => ({...item, popularityTop: index+1}) )
 }
