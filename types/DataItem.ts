@@ -3,4 +3,5 @@ interface DataItem {
     title: string
     author: string
     imageUrl: string
+    popularityTop: number
 }

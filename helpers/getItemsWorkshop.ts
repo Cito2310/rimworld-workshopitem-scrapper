@@ -34,15 +34,16 @@ export const getItemsWorkshop = async({ page }: props) => {
         
         const dataItemsPage: DataItem[] = await page.evaluate(() =>{
             const workshopItems = Array.from(document.querySelectorAll(".workshopItem"));
-        
+
             let dataItems: DataItem[] = [];
-            workshopItems.forEach( item => {
+            workshopItems.forEach(( item, index ) => {
                 const title = item.querySelector(".item_link")?.textContent as string;
                 const url = item.querySelector(".item_link")?.getAttribute("href") as string;
                 const author = item.querySelector(".workshop_author_link")?.textContent as string;
                 const imageUrl = item.querySelector(".workshopItemPreviewImage")?.getAttribute("src") as string;
+                const popularityTop = 0;
 
-                dataItems.push({ title, url, author, imageUrl })
+                dataItems.push({ title, url, author, imageUrl, popularityTop })
             })
 
             return dataItems;
@@ -51,8 +52,9 @@ export const getItemsWorkshop = async({ page }: props) => {
         currentItemsWorkshop.push( ...dataItemsPage );
         allItemsWorkshop.push( ...dataItemsPage );
 
-    // } while ( (currentItemsWorkshop.length !== 0) && currentPage <= 30 || false ) // limiter
+    // } while ( (currentItemsWorkshop.length !== 0) && currentPage <= 4 || false ) // limiter
     } while ( currentItemsWorkshop.length !== 0 || false )
 
-    return allItemsWorkshop;
+    // return items and add popularityTop
+    return allItemsWorkshop.map(( item, index ) => ({...item, popularityTop: index}) )
 }
